@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo">
+        <h2>Iniciar sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html>

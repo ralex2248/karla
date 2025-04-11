@@ -1,18 +1,20 @@
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-image: url("{% static 'img/fondo_login.png' %}"); /* Fondo de login */
     background-size: cover;
     background-position: center;
     color: #333;
     height: 100vh; /* Asegura que la imagen cubra toda la altura de la ventana */
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
 }
 
 .login-container {
     width: 100%;
     max-width: 400px;
-    margin: 100px auto;
-    background-color: rgba(204, 164, 204, 0.85); /* Fondo semi-transparente para el formulario */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para el formulario */
     padding: 30px;
     border-radius: 10px;
     text-align: center;
@@ -22,14 +24,12 @@ body {
 .login-container img {
     width: 120px;
     margin-bottom: 20px;
-    border-radius: 15px;
 }
 
 .login-container input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
