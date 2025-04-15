@@ -11,9 +11,9 @@
     <div class="sidebar">
         <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
         <h2>Veterinaria</h2>
-        <a href="#">Inicio</a>
-        <a href="#">Pacientes</a>
-        <a href="#">Consultas</a>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'ver_cliente' %}">Cliente</a>
+        <a href="{% url 'ver_mascotas' %}">Mascotas</a>
         <a href="#">Reportes</a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
@@ -26,9 +26,9 @@
         <p>Este es el panel de inicio</p>
 
         <div class="button-container">
-            <button>Agregar Cliente</button>
-            <button>Agregar Mascota</button>
-            <button>Agregar Ficha</button>
+            <a href="{% url 'agregar_cliente' %}"><button>Agregar Cliente</button></a>
+            <a href="{% url 'agregar_mascota' %}"><button>Agregar Mascota</button></a>
+            <a href="{% url 'agregar_ficha' %}"><button>Agregar Ficha</button></a>
             <button>Ver Gráficos</button>
         </div>
 

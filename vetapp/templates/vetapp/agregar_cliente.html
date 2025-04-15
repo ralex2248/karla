@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario-container">
+        <h2>Formulario</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ form.nombre.label_tag }} {{ form.nombre }}</p>
+            <p>{{ form.rut.label_tag }} {{ form.rut }}</p>
+            <p>{{ form.mascota.label_tag }} {{ form.mascota }}</p>
+            <p>{{ form.direccion.label_tag }} {{ form.direccion }}</p>
+            <p>{{ form.numero.label_tag }} {{ form.numero }}</p>
+            <p>{{ form.correo.label_tag }} {{ form.correo }}</p>
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'home' %}" class="volver-btn">Volver al Inicio</a>
+    </div>
+</body>
+</html>

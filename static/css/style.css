@@ -396,3 +396,78 @@ th {
     background-color: #c198c5;
     color: white;
 }
+
+/* ======= FORMULARIO ======= */
+.formulario-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 100px auto;
+    background-color: rgba(204, 164, 204, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.formulario-container h2 {
+    margin-bottom: 20px;
+    color: #4a4a4a;
+}
+
+.formulario-container form p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.formulario-container input, 
+.formulario-container select, 
+.formulario-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.formulario-container button {
+    background-color: #5c67f2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.formulario-container button:hover {
+    background-color: #4a52d1;
+}
+
+.volver-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #c198c5;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.volver-btn:hover {
+    background-color: #a65fc9;
+}
+
+
+
+
+input[type="date"].fecha-campo {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+}

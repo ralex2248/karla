@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Mascotas</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
+        <h2>Veterinaria</h2>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'ver_cliente' %}">Cliente</a>
+        <a href="{% url 'ver_mascotas' %}">Mascotas</a>
+        <a href="#">Consultas</a>
+        <a href="#">Reportes</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Cerrar sesión</button>
+        </form>
+    </div>
+
+    <!-- Main Content -->
+    <div class="home-container">
+        <h1 class="ver-cliente-h1">Lista de Mascotas</h1>
+
+        <!-- Contenedor para la tabla -->
+        <div class="tabla-container">
+            <table class="ver-cliente-table">
+                <thead>
+                    <tr class="ver-cliente-tr">
+                        <th class="ver-cliente-th">Nombre Macota</th>
+                        <th class="ver-cliente-th">Sexo</th>
+                        <th class="ver-cliente-th">Raza</th>
+                        <th class="ver-cliente-th">Especie</th>
+                        <th class="ver-cliente-th">Fecha de Nacimiento</th>
+                        <th class="ver-cliente-th">Edad</th>
+                        <th class="ver-cliente-th">Estado Reproductivo</th>
+                        <th class="ver-cliente-th">dueño</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mascota in mascotas %}
+                    <tr class="ver-cliente-tr">
+                        <td class="ver-cliente-td">{{ mascota.nombre }}</td>
+                        <td class="ver-cliente-td">{{ mascota.sexo }}</td>
+                        <td class="ver-cliente-td">{{ mascota.raza }}</td>
+                        <td class="ver-cliente-td">{{ mascota.especie }}</td>
+                        <td class="ver-cliente-td">{{ mascota.fecha_nacimiento }}</td>
+                        <td class="ver-cliente-td">{{ mascota.edad }}</td>
+                        <td class="ver-cliente-td">{{ mascota.estado_reproductivo }}</td>
+                        <td class="ver-cliente-td">{{ mascota.cliente.nombre }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr class="ver-cliente-tr">
+                        <td class="ver-cliente-td" colspan="8">No hay mascotas registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

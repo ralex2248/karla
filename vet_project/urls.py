@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vetapp.urls')),  # Redirige a la app
+    
 ]
 
 if settings.DEBUG:

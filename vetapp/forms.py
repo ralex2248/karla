@@ -10,6 +10,12 @@ class MascotaForm(forms.ModelForm):
     class Meta:
         model = Mascota
         fields = '__all__'
+        widgets = {
+            'fecha_nacimiento': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'fecha-campo'
+            }),
+        }
 
 class FichaForm(forms.ModelForm):
     class Meta:
