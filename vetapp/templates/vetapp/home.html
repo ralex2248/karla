@@ -8,13 +8,58 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="home-container">
-        <h1>¡Bienvenido a la Veterinaria!</h1>
-        <p>Este es el panel de inicio.</p>
+    <div class="sidebar">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
+        <h2>Veterinaria</h2>
+        <a href="#">Inicio</a>
+        <a href="#">Pacientes</a>
+        <a href="#">Consultas</a>
+        <a href="#">Reportes</a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit" class="logout-btn">Cerrar sesión</button>
         </form>
+    </div>
+
+    <div class="home-container">
+        <h1>¡Bienvenida Karla Cáceres!</h1>
+        <p>Este es el panel de inicio</p>
+
+        <div class="button-container">
+            <button>Agregar Cliente</button>
+            <button>Agregar Mascota</button>
+            <button>Agregar Ficha</button>
+            <button>Ver Gráficos</button>
+        </div>
+
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Karla Cáceres</td>
+                        <td>Superuser</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Juan Pérez</td>
+                        <td>Administrador</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Ana López</td>
+                        <td>Veterinario</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
