@@ -11,4 +11,10 @@ urlpatterns = [
     path('agregar_ficha/', views.agregar_ficha, name='agregar_ficha'),
     path('ver-cliente/', views.ver_cliente, name='ver_cliente'),
     path('ver_mascotas/', views.ver_mascota, name='ver_mascotas'),
+    path('fichas/', views.ver_ficha, name='ver_ficha'),
+    path('ficha/agregar/', views.agregar_ficha, name='agregar_ficha'),
+    path('ajax/obtener-cliente/', views.obtener_cliente_por_mascota, name='obtener_cliente'),
+    path('ultimas_fichas/', views.ultimas_10_fichas, name='ultimas_fichas'),
+    path('detalle_ficha/<int:id_ficha>/', views.ver_detalle_ficha, name='ver_detalle_ficha'),
+
 ]

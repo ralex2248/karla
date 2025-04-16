@@ -14,6 +14,7 @@
         <a href="{% url 'home' %}">Inicio</a>
         <a href="{% url 'ver_cliente' %}">Cliente</a>
         <a href="{% url 'ver_mascotas' %}">Mascotas</a>
+        <a href="{% url 'ver_ficha' %}">Fichas</a>
         <a href="#">Reportes</a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
@@ -33,30 +34,33 @@
         </div>
 
         <div class="tabla-container">
+            <h2>Últimas 10 Fichas Realizadas</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Rol</th>
+                        <th>ID Ficha</th>
+                        <th>Mascota</th>
+                        <th>Cliente</th>
+                        <th>Fecha Visita</th>
+                        <th>Motivo Consulta</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Karla Cáceres</td>
-                        <td>Superuser</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Juan Pérez</td>
-                        <td>Administrador</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Ana López</td>
-                        <td>Veterinario</td>
-                    </tr>
+                    {% for ficha in fichas %}
+                        <tr>
+                            <td>{{ ficha.id_ficha }}</td>
+                            <td>{{ ficha.mascota.nombre }}</td>
+                            <td>{{ ficha.cliente.nombre }}</td>
+                            <td>{{ ficha.fecha_visita }}</td>
+                            <td>{{ ficha.motivo_consulta }}</td>
+                            <td><a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}"><button>Ver Detalle</button></a></td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">No hay fichas disponibles.</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -1,18 +1,55 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Formulario</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+        }
+    </style>
 </head>
 <body>
-    <h2>Formulario</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'home' %}">Volver al Inicio</a>
+
+    <!-- Contenedor del formulario -->
+    <div class="formulario-container">
+        <h2>Formulario</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'home' %}" class="volver-btn">Volver al Inicio</a>
+    </div>
+
+    <!-- jQuery CDN y script para autocompletar cliente -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#id_mascota').change(function(){
+                var mascotaId = $(this).val();
+                if (mascotaId) {
+                    $.ajax({
+                        url: "{% url 'obtener_cliente' %}",
+                        data: {
+                            'mascota_id': mascotaId
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            if (!data.error) {
+                                $('#id_cliente').val(data.cliente_id);
+                            }
+                        }
+                    });
+                } else {
+                    $('#id_cliente').val('');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

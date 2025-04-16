@@ -4,7 +4,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Clientes</title>
+    <title>Lista de Fichas</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -25,34 +25,36 @@
 
     <!-- Main Content -->
     <div class="home-container">
-        <h1 class="ver-cliente-h1">Lista de Clientes</h1>
+        <h1 class="ver-cliente-h1">Lista de Fichas</h1>
 
         <!-- Contenedor para la tabla -->
         <div class="tabla-container">
             <table class="ver-cliente-table">
                 <thead>
                     <tr class="ver-cliente-tr">
-                        <th class="ver-cliente-th">Nombre</th>
-                        <th class="ver-cliente-th">Número</th>
+                        <th class="ver-cliente-th">ID Ficha</th>
                         <th class="ver-cliente-th">Mascota</th>
-                        <th class="ver-cliente-th">Correo</th>
-                        <th class="ver-cliente-th">Dirección</th>
-                        <th class="ver-cliente-th">RUT</th>
+                        <th class="ver-cliente-th">Cliente</th>
+                        <th class="ver-cliente-th">Fecha de Visita</th>
+                        <th class="ver-cliente-th">Motivo Consulta</th>
+                        <th class="ver-cliente-th">Tratamiento</th>
+                        <th class="ver-cliente-th">Recomendaciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for cliente in clientes %}
+                    {% for ficha in fichas %}
                     <tr class="ver-cliente-tr">
-                        <td class="ver-cliente-td">{{ cliente.nombre }}</td>
-                        <td class="ver-cliente-td">{{ cliente.numero }}</td>
-                        <td class="ver-cliente-td">{{ cliente.mascota }}</td>
-                        <td class="ver-cliente-td">{{ cliente.correo }}</td>
-                        <td class="ver-cliente-td">{{ cliente.direccion }}</td>
-                        <td class="ver-cliente-td">{{ cliente.rut }}</td>
+                        <td class="ver-cliente-td">{{ ficha.id_ficha }}</td>
+                        <td class="ver-cliente-td">{{ ficha.mascota.nombre }}</td>
+                        <td class="ver-cliente-td">{{ ficha.cliente.nombre }}</td>
+                        <td class="ver-cliente-td">{{ ficha.fecha_visita }}</td>
+                        <td class="ver-cliente-td">{{ ficha.motivo_consulta }}</td>
+                        <td class="ver-cliente-td">{{ ficha.tratamiento }}</td>
+                        <td class="ver-cliente-td">{{ ficha.recomendaciones }}</td>
                     </tr>
                     {% empty %}
                     <tr class="ver-cliente-tr">
-                        <td class="ver-cliente-td" colspan="6">No hay clientes registrados.</td>
+                        <td class="ver-cliente-td" colspan="7">No hay fichas registradas.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

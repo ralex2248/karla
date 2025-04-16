@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Ficha</title>
+    <!-- Aquí corregimos el nombre del archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="container-ficha">
+        <h1 class="titulo-ficha">Detalle de la Ficha</h1>
+        
+        <div class="ficha-details-box">
+            <p><strong>Nombre de la mascota:</strong> {{ ficha.mascota.nombre }}</p>
+            <p><strong>Cliente:</strong> {{ ficha.cliente.nombre }}</p>
+            <p><strong>Fecha de visita:</strong> {{ ficha.fecha_visita }}</p>
+            <p><strong>Motivo de consulta:</strong> {{ ficha.motivo_consulta }}</p>
+            <p><strong>Anamnesis remota:</strong> {{ ficha.anamnesis_remota }}</p>
+            <p><strong>Anamnesis actual:</strong> {{ ficha.anamnesis_actual }}</p>
+            <p><strong>PC:</strong> {{ ficha.pc }}</p>
+            <p><strong>TLLC:</strong> {{ ficha.tllc }}</p>
+            <p><strong>Oídos:</strong> {{ ficha.oidos }}</p>
+            <p><strong>Ojos:</strong> {{ ficha.ojos }}</p>
+            <p><strong>Boca:</strong> {{ ficha.boca }}</p>
+            <p><strong>Linfonodo submandibular:</strong> {{ ficha.linfonodo_submandibular }}</p>
+            <p><strong>RT:</strong> {{ ficha.rt }}</p>
+            <p><strong>FC:</strong> {{ ficha.fc }}</p>
+            <p><strong>FR:</strong> {{ ficha.fr }}</p>
+            <p><strong>Pulso femoral:</strong> {{ ficha.pulso_femoral }}</p>
+            <p><strong>Palpación abdominal:</strong> {{ ficha.palpacion_abdominal }}</p>
+            <p><strong>Miembro reproductor:</strong> {{ ficha.miembro_reproductor }}</p>
+            <p><strong>Linfonodo inguinal:</strong> {{ ficha.linfonodo_inguinal }}</p>
+            <p><strong>Pelaje:</strong> {{ ficha.pelaje }}</p>
+            <p><strong>Temperatura:</strong> {{ ficha.temperatura }}</p>
+            <p><strong>Tratamiento:</strong> {{ ficha.tratamiento }}</p>
+            <p><strong>Recomendaciones:</strong> {{ ficha.recomendaciones }}</p>
+            <p><strong>Receta:</strong> {{ ficha.receta }}</p>
+        </div>
+    </section>
+</body>
+</html>

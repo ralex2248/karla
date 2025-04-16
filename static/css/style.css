@@ -471,3 +471,80 @@ input[type="date"].fecha-campo {
     font-size: 16px;
     width: 100%;
 }
+
+
+
+.ver-cliente-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ver-cliente-th, .ver-cliente-td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.ver-cliente-tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* Contenedor principal con fondo lila */
+.container-ficha {
+    background-color: #e6ccf2; /* Lila pastel */
+    padding: 40px 20px;
+    border-radius: 20px;
+    max-width: 900px;
+    margin: 60px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título centrado */
+  .titulo-ficha {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #4a006e;
+  }
+  
+  /* Contenido dentro del cuadro blanco */
+  .ficha-details-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+  }
+  
+  /* Estilo para los párrafos */
+  .ficha-details-box p {
+    margin: 12px 0;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  
+  /* Estilo para los strong */
+  .ficha-details-box p strong {
+    color: #660066;
+  }
+  
+  /* Responsive para celulares */
+  @media (max-width: 600px) {
+    .container-ficha {
+      padding: 20px 10px;
+    }
+  
+    .ficha-details-box {
+      padding: 20px;
+    }
+  
+    .titulo-ficha {
+      font-size: 24px;
+    }
+  
+    .ficha-details-box p {
+      font-size: 14px;
+    }
+  }

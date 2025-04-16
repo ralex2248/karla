@@ -65,7 +65,7 @@ class Mascota(models.Model):
 # Modelo Ficha
 class Ficha(models.Model):
     id_ficha = models.AutoField(primary_key=True)
-    mascota = models.OneToOneField(Mascota, on_delete=models.CASCADE)
+    mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='fichas')  # Cambié a ForeignKey
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     fecha_visita = models.DateField(auto_now_add=True)
     motivo_consulta = models.TextField()
