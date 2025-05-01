@@ -8,36 +8,94 @@
     <title>Detalle de Ficha</title>
     <!-- Aquí corregimos el nombre del archivo CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+        }
+    </style>
 </head>
 <body>
     <section class="container-ficha">
         <h1 class="titulo-ficha">Detalle de la Ficha</h1>
         
+        <!-- Cada campo está dentro de su propio 'ficha-details-box' -->
         <div class="ficha-details-box">
             <p><strong>Nombre de la mascota:</strong> {{ ficha.mascota.nombre }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Cliente:</strong> {{ ficha.cliente.nombre }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Fecha de visita:</strong> {{ ficha.fecha_visita }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Motivo de consulta:</strong> {{ ficha.motivo_consulta }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Anamnesis remota:</strong> {{ ficha.anamnesis_remota }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Anamnesis actual:</strong> {{ ficha.anamnesis_actual }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>PC:</strong> {{ ficha.pc }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>TLLC:</strong> {{ ficha.tllc }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Oídos:</strong> {{ ficha.oidos }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Ojos:</strong> {{ ficha.ojos }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Boca:</strong> {{ ficha.boca }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Linfonodo submandibular:</strong> {{ ficha.linfonodo_submandibular }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>RT:</strong> {{ ficha.rt }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>FC:</strong> {{ ficha.fc }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>FR:</strong> {{ ficha.fr }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Pulso femoral:</strong> {{ ficha.pulso_femoral }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Palpación abdominal:</strong> {{ ficha.palpacion_abdominal }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Miembro reproductor:</strong> {{ ficha.miembro_reproductor }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Linfonodo inguinal:</strong> {{ ficha.linfonodo_inguinal }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Pelaje:</strong> {{ ficha.pelaje }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Temperatura:</strong> {{ ficha.temperatura }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Tratamiento:</strong> {{ ficha.tratamiento }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Recomendaciones:</strong> {{ ficha.recomendaciones }}</p>
+        </div>
+        <div class="ficha-details-box">
             <p><strong>Receta:</strong> {{ ficha.receta }}</p>
+        </div>
+        
+        <!-- Botones al final del formulario -->
+        <div class="button-container">
+            <a href="javascript:history.back()" class="boton-detalle-ficha volver-atras">Volver atrás</a>
+            <a href="{% url 'ver_fichas_mascota' ficha.mascota.id_mascota %}" class="boton-detalle-ficha agregar-mascota">ver todas las fichas</a>
         </div>
     </section>
 </body>

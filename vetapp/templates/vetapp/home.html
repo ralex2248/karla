@@ -23,7 +23,7 @@
     </div>
 
     <div class="home-container">
-        <h1>¡Bienvenida Karla Cáceres!</h1>
+        <h1>¡Bienvenida Dr. Karla Cáceres!</h1>
         <p>Este es el panel de inicio</p>
 
         <div class="button-container">
@@ -54,7 +54,11 @@
                             <td>{{ ficha.cliente.nombre }}</td>
                             <td>{{ ficha.fecha_visita }}</td>
                             <td>{{ ficha.motivo_consulta }}</td>
-                            <td><a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}"><button>Ver Detalle</button></a></td>
+                            <td>
+                                <a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}">
+                                    <button class="detalle-btn">Ver Detalle</button>
+                                </a>
+                            </td>
                         </tr>
                     {% empty %}
                         <tr>

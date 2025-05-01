@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from datetime import date
 
 # Modelo de Usuario Personalizado
@@ -53,11 +52,18 @@ class Mascota(models.Model):
     fecha_nacimiento = models.DateField()
     estado_reproductivo = models.CharField(max_length=15, choices=ESTADO_REPRODUCTIVO_CHOICES)
 
-    def calcular_edad(self):
+    def calcular_edad_completa(self):
         today = date.today()
-        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+        dias_totales = (today - self.fecha_nacimiento).days
+        años = dias_totales // 365
+        dias = dias_totales % 365
 
-    edad = property(calcular_edad)
+        años_texto = f"{años} año" if años == 1 else f"{años} años"
+        dias_texto = f"{dias} día" if dias == 1 else f"{dias} días"
+
+        return f"{años_texto} y {dias_texto}"
+
+    edad = property(calcular_edad_completa)
 
     def __str__(self):
         return f"{self.nombre} ({self.especie})"
@@ -65,7 +71,7 @@ class Mascota(models.Model):
 # Modelo Ficha
 class Ficha(models.Model):
     id_ficha = models.AutoField(primary_key=True)
-    mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='fichas')  # Cambié a ForeignKey
+    mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='fichas')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     fecha_visita = models.DateField(auto_now_add=True)
     motivo_consulta = models.TextField()

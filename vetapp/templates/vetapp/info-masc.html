@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Fichas de Mascota</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+        }
+    </style>
+</head>
+<body class="fondo-ficha">
+    <section class="container-ficha">
+        <h1 class="titulo-ficha">Información general de: {{ mascota.nombre }}</h1>
+
+        <!-- Datos de la mascota -->
+        <div class="ficha-details-box">
+            <h2>Datos de la Mascota</h2>
+            <p><strong>Nombre:</strong> {{ mascota.nombre }}</p>
+            <p><strong>Especie:</strong> {{ mascota.especie }}</p>
+            <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+            <p><strong>Sexo:</strong> {{ mascota.sexo }}</p>
+            <p><strong>Edad:</strong> {{ mascota.edad }}</p>
+            <p><strong>Estado reproductivo:</strong> {{ mascota.estado_reproductivo }}</p>
+        </div>
+
+        <!-- Datos del cliente -->
+        <div class="ficha-details-box">
+            <h2>Datos del Cliente</h2>
+            <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+            <p><strong>Correo:</strong> {{ cliente.correo }}</p>
+            <p><strong>Dirección:</strong> {{ cliente.direccion }}</p>
+            <p><strong>Teléfono:</strong> {{ cliente.celular }}</p>
+        </div>
+
+        <!-- Listado de fichas dentro del mismo contenedor visual -->
+        <div class="ficha-details-box">
+            <h2>Fichas Asociadas a la Mascota</h2>
+            <table class="ver-cliente-table tabla-fichas">
+                <thead>
+                    <tr class="ver-cliente-tr">
+                        <th class="ver-cliente-th">ID de Ficha</th>
+                        <th class="ver-cliente-th">Fecha de Visita</th>
+                        <th class="ver-cliente-th">Motivo de Consulta</th>
+                        <th class="ver-cliente-th">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ficha in mascota.fichas.all %}
+                        <tr class="ver-cliente-tr">
+                            <td class="ver-cliente-td">{{ ficha.id_ficha }}</td>
+                            <td class="ver-cliente-td">{{ ficha.fecha_visita }}</td>
+                            <td class="ver-cliente-td">{{ ficha.motivo_consulta }}</td>
+                            <td class="ver-cliente-td">
+                                <a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}" class="detalle-btn" style="text-decoration: none;">Ver Detalles</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr class="ver-cliente-tr">
+                            <td class="ver-cliente-td" colspan="4">No hay fichas registradas para esta mascota.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botón para volver atrás -->
+        <div class="button-container">
+            <a href="javascript:history.back()" class="boton-detalle-ficha volver-atras">Volver atrás</a>
+            <a href="{% url 'home' %}" class="boton-detalle-ficha agregar-mascota">Volver al inicio</a>
+
+        </div>
+    </section>
+</body>
+</html>

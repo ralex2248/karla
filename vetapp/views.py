@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import ClienteForm, MascotaForm, FichaForm
@@ -54,6 +54,7 @@ def ver_cliente(request):
     clientes = Cliente.objects.all()
     return render(request, 'vetapp/ver_cliente.html', {'clientes': clientes})
 
+
 # Vista para ver las mascotas
 @login_required
 def ver_mascota(request):
@@ -82,27 +83,31 @@ def obtener_cliente_por_mascota(request):
         return JsonResponse({'error': 'ID de mascota no proporcionado'}, status=400)
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
-
+# Vista para las últimas 10 fichas
 def ultimas_10_fichas(request):
-    # Obtener las últimas 10 fichas ordenadas por fecha de visita (más recientes primero)
     fichas = Ficha.objects.all().order_by('-fecha_visita')[:10]
     return render(request, 'vetapp/ultimas_fichas.html', {'fichas': fichas})
 
+# Vista para ver el detalle de una ficha
 def ver_detalle_ficha(request, id_ficha):
     ficha = Ficha.objects.get(id_ficha=id_ficha)
     return render(request, 'vetapp/detalle_ficha.html', {'ficha': ficha})
 
-
-def detalle_ficha(request, ficha_id):
-    # Obtén el objeto Ficha basado en el ID
-    try:
-        ficha = Ficha.objects.get(id_ficha=ficha_id)
-    except Ficha.DoesNotExist:
-        ficha = None
+# Nueva vista para ver las fichas asociadas a una mascota
+@login_required
+def ver_fichas_mascota(request, id_mascota):
+    # Obtener la mascota por ID
+    mascota = get_object_or_404(Mascota, id_mascota=id_mascota)
     
-    # Si la ficha no existe, devuelve un mensaje o una página de error
-    if ficha is None:
-        return render(request, 'mi_app/error.html')  # Podrías tener una plantilla de error
+    # Obtener el cliente asociado a la mascota
+    cliente = mascota.cliente
 
-    # Renderiza la plantilla 'detalle_ficha.html' pasando todos los detalles de la ficha
-    return render(request, 'mi_app/detalle_ficha.html', {'ficha': ficha})
+    # Obtener todas las fichas asociadas a la mascota
+    fichas = Ficha.objects.filter(mascota=mascota)
+
+    # Renderizar el template con los datos
+    return render(request, 'vetapp/info-masc.html', {
+        'mascota': mascota,
+        'cliente': cliente,
+        'fichas': fichas
+    })

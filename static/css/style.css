@@ -508,22 +508,31 @@ input[type="date"].fecha-campo {
     color: #4a006e;
   }
   
-  /* Contenido dentro del cuadro blanco */
-  .ficha-details-box {
+/* Contenido dentro del cuadro blanco */
+.ficha-details-box {
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 15px; /* Reducido el padding para hacer los cuadros más pequeños */
+    border-radius: 10px; /* También he reducido el radio de borde para un aspecto más ajustado */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
+    margin-bottom: 20px; /* Añadí margen entre los cuadros */
   }
   
   /* Estilo para los párrafos */
   .ficha-details-box p {
-    margin: 12px 0;
+    margin: 8px 0; /* Reducido el margen entre los párrafos dentro de cada cuadro */
     color: #333;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 14px; /* Reducido el tamaño de la fuente para hacer la información más compacta */
   }
+  
+  /* Estilo para los labels de cada campo (para hacer que los nombres de los campos se destaquen) */
+  .ficha-details-box p strong {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 16px; /* Mantengo un tamaño ligeramente mayor para los nombres de los campos */
+  }
+  
   
   /* Estilo para los strong */
   .ficha-details-box p strong {
@@ -548,3 +557,166 @@ input[type="date"].fecha-campo {
       font-size: 14px;
     }
   }
+
+.detalle-btn {
+    background-color: #c8a2c8;
+    border: none;
+    color: white;
+    padding: 8px 16px;  /* Reducido un poco el padding */
+    font-size: 14px;     /* Font-size un poco más pequeño */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.detalle-btn:hover {
+    background-color: #9b4ad1;
+}
+
+/* Estilos exclusivos para este template */
+
+.boton-detalle-ficha {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Estilo para el contenedor de los botones */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Estilo para el botón de 'Volver atrás' */
+.boton-detalle-ficha.volver-atras {
+    background-color: #4fa1d7;
+    border: none;
+}
+
+/* Estilo para el botón de 'Ir a agregar mascota' */
+.boton-detalle-ficha.agregar-mascota {
+    background-color: #db77e6;
+    border: none;
+}
+
+/* RESPONSIVE PARA TABLETS (de 901px a 1280px) */
+@media screen and (max-width: 1280px) {
+    .login-container {
+        margin: 60px auto;
+        padding: 25px;
+    }
+
+    .home-container {
+        margin-left: 0;
+        padding: 60px 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .action-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .table-container, .tabla-container {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .tabla-container table, .table-container table {
+        font-size: 14px;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 998;
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* RESPONSIVE PARA TELÉFONOS (hasta 900px) */
+@media screen and (max-width: 900px) {
+    .login-container {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .login-container img {
+        width: 90px;
+    }
+
+    .login-container input,
+    .login-container button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .home-container {
+        margin: 0;
+        padding: 80px 15px 20px 15px;
+        align-items: stretch;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .table-container,
+    .tabla-container {
+        padding: 10px;
+        overflow-x: auto;
+    }
+
+    .table-container table th,
+    .table-container table td,
+    .tabla-container table th,
+    .tabla-container table td {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        width: 200px;
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 999;
+        padding: 20px;
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .logout-btn-sidebar {
+        position: absolute;
+        bottom: 10px;
+    }
+}

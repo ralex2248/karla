@@ -32,14 +32,15 @@
             <table class="ver-cliente-table">
                 <thead>
                     <tr class="ver-cliente-tr">
-                        <th class="ver-cliente-th">Nombre Macota</th>
+                        <th class="ver-cliente-th">Nombre Mascota</th>
                         <th class="ver-cliente-th">Sexo</th>
                         <th class="ver-cliente-th">Raza</th>
                         <th class="ver-cliente-th">Especie</th>
                         <th class="ver-cliente-th">Fecha de Nacimiento</th>
                         <th class="ver-cliente-th">Edad</th>
                         <th class="ver-cliente-th">Estado Reproductivo</th>
-                        <th class="ver-cliente-th">dueño</th>
+                        <th class="ver-cliente-th">Dueño</th>
+                        <th class="ver-cliente-th">Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,10 +54,13 @@
                         <td class="ver-cliente-td">{{ mascota.edad }}</td>
                         <td class="ver-cliente-td">{{ mascota.estado_reproductivo }}</td>
                         <td class="ver-cliente-td">{{ mascota.cliente.nombre }}</td>
+                        <td class="ver-cliente-td">
+                            <a href="{% url 'ver_fichas_mascota' mascota.id_mascota %}" class="detalle-btn">Detalle</a>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr class="ver-cliente-tr">
-                        <td class="ver-cliente-td" colspan="8">No hay mascotas registradas.</td>
+                        <td class="ver-cliente-td" colspan="9">No hay mascotas registradas.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

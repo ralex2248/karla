@@ -16,5 +16,11 @@ urlpatterns = [
     path('ajax/obtener-cliente/', views.obtener_cliente_por_mascota, name='obtener_cliente'),
     path('ultimas_fichas/', views.ultimas_10_fichas, name='ultimas_fichas'),
     path('detalle_ficha/<int:id_ficha>/', views.ver_detalle_ficha, name='ver_detalle_ficha'),
+    path('mascota/<int:id_mascota>/fichas/', views.ver_fichas_mascota, name='ver_fichas_mascota'),
+    # Modificar la ruta para que reciba un parámetro id_mascota
+    path('ver_mascota/<int:id_mascota>/', views.ver_mascota, name='ver_mascota'),
+    
+    
+    
 
 ]
