@@ -55,7 +55,7 @@
                         <td class="ver-cliente-td">{{ mascota.estado_reproductivo }}</td>
                         <td class="ver-cliente-td">{{ mascota.cliente.nombre }}</td>
                         <td class="ver-cliente-td">
-                            <a href="{% url 'ver_fichas_mascota' mascota.id_mascota %}" class="detalle-btn">Detalle</a>
+                            <a href="{% url 'ver_fichas_mascota' mascota.id_mascota %}" class="detalle-btn" style="text-decoration: none;">Detalle</a>
                         </td>
                     </tr>
                     {% empty %}
