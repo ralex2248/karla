@@ -101,9 +101,6 @@ STATIC_URL = '/static/'
 import os 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Esto le indica a Django que busque archivos estáticos en la carpeta 'static' en la raíz del proyecto.
-]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
