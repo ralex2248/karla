@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-
+from django.utils import timezone
 # Modelo de Usuario Personalizado
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
@@ -73,10 +73,11 @@ class Ficha(models.Model):
     id_ficha = models.AutoField(primary_key=True)
     mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name='fichas')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    fecha_visita = models.DateField(auto_now_add=True)
+    fecha_visita = models.DateField(default=timezone.now)
     motivo_consulta = models.TextField()
     anamnesis_remota = models.TextField()
     anamnesis_actual = models.TextField()
+    cc = models.TextField(blank=True, null=True)
     pc = models.TextField()
     tllc = models.TextField()
     oidos = models.TextField()

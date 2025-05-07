@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Mascota</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario-container">
+        <h2>Editar Mascota</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ form.cliente.label_tag }} {{ form.cliente }}</p>
+            <p>{{ form.nombre.label_tag }} {{ form.nombre }}</p>
+            <p>{{ form.sexo.label_tag }} {{ form.sexo }}</p>
+            <p>{{ form.raza.label_tag }} {{ form.raza }}</p>
+            <p>{{ form.especie.label_tag }} {{ form.especie }}</p>
+
+            <!-- Fecha de nacimiento con formato correcto -->
+            <p>{{ form.fecha_nacimiento.label_tag }}
+                <input type="date" name="fecha_nacimiento" value="{{ form.fecha_nacimiento.value|date:'Y-m-d' }}">
+            </p>
+
+            <p>{{ form.estado_reproductivo.label_tag }} {{ form.estado_reproductivo }}</p>
+            <button type="submit">Actualizar</button>
+        </form>
+        <a href="{% url 'ver_mascotas' %}" class="volver-btn">Volver al listado</a>
+    </div>
+</body>
+</html>

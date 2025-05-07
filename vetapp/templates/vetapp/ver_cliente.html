@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
+    <!-- Botón hamburguesa con nuevo estilo -->
+    <button class="menu-toggle">☰</button>
+
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
         <h2>Veterinaria</h2>
         <a href="{% url 'home' %}">Inicio</a>
@@ -38,6 +42,7 @@
                         <th class="ver-cliente-th">Correo</th>
                         <th class="ver-cliente-th">Dirección</th>
                         <th class="ver-cliente-th">RUT</th>
+                        <th class="ver-cliente-th">Acción</th> <!-- Nueva columna para acción -->
                     </tr>
                 </thead>
                 <tbody>
@@ -49,10 +54,14 @@
                         <td class="ver-cliente-td">{{ cliente.correo }}</td>
                         <td class="ver-cliente-td">{{ cliente.direccion }}</td>
                         <td class="ver-cliente-td">{{ cliente.rut }}</td>
+                        <td class="ver-cliente-td ver-cliente-td-detalle">
+                            <!-- Botón de editar -->
+                            <a href="{% url 'editar_cliente' cliente.id_cliente %}" class="detalle-btn" style="text-decoration: none;">Editar</a>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr class="ver-cliente-tr">
-                        <td class="ver-cliente-td" colspan="6">No hay clientes registrados.</td>
+                        <td class="ver-cliente-td" colspan="7">No hay clientes registrados.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -60,5 +69,7 @@
         </div>
     </div>
 
+    <!-- Vincular archivo JavaScript al final del body -->
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

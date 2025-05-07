@@ -6,10 +6,24 @@
     <meta charset="UTF-8">
     <title>Lista de Mascotas</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .ver-cliente-td-detalle {
+            vertical-align: middle;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
+
+    <!-- Botón hamburguesa -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Sidebar con ID para JS -->
+    <div class="sidebar" id="sidebar">
         <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
         <h2>Veterinaria</h2>
         <a href="{% url 'home' %}">Inicio</a>
@@ -27,7 +41,6 @@
     <div class="home-container">
         <h1 class="ver-cliente-h1">Lista de Mascotas</h1>
 
-        <!-- Contenedor para la tabla -->
         <div class="tabla-container">
             <table class="ver-cliente-table">
                 <thead>
@@ -40,7 +53,7 @@
                         <th class="ver-cliente-th">Edad</th>
                         <th class="ver-cliente-th">Estado Reproductivo</th>
                         <th class="ver-cliente-th">Dueño</th>
-                        <th class="ver-cliente-th">Detalle</th>
+                        <th class="ver-cliente-th">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,8 +67,9 @@
                         <td class="ver-cliente-td">{{ mascota.edad }}</td>
                         <td class="ver-cliente-td">{{ mascota.estado_reproductivo }}</td>
                         <td class="ver-cliente-td">{{ mascota.cliente.nombre }}</td>
-                        <td class="ver-cliente-td">
+                        <td class="ver-cliente-td ver-cliente-td-detalle">
                             <a href="{% url 'ver_fichas_mascota' mascota.id_mascota %}" class="detalle-btn" style="text-decoration: none;">Detalle</a>
+                            <a href="{% url 'editar_mascota' mascota.id_mascota %}" class="detalle-btn" style="text-decoration: none;">Editar</a>
                         </td>
                     </tr>
                     {% empty %}
@@ -67,6 +81,9 @@
             </table>
         </div>
     </div>
+
+    <!-- Script para menú responsive -->
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

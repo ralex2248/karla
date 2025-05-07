@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Ficha</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Asegura que el fondo cubra toda la ventana */
+        body {
+            background-image: url("{% static 'img/fondo_login.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* La altura mínima del cuerpo será el 100% de la altura de la ventana */
+        }
+
+        /* Asegura que el contenedor ocupe al menos el 100% de la altura de la ventana */
+        .formulario-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .volver-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario-container">
+        <h2>Editar Ficha</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ form.mascota.label_tag }} {{ form.mascota }}</p>
+            <p>{{ form.cliente.label_tag }} {{ form.cliente }}</p>
+            <p>{{ form.fecha_visita.label_tag }}
+                <input type="date" name="fecha_visita" value="{{ form.fecha_visita.value|date:'Y-m-d' }}">
+            </p>
+            <p>{{ form.motivo_consulta.label_tag }} {{ form.motivo_consulta }}</p>
+            <p>{{ form.anamnesis_remota.label_tag }} {{ form.anamnesis_remota }}</p>
+            <p>{{ form.anamnesis_actual.label_tag }} {{ form.anamnesis_actual }}</p>
+            <p>{{ form.cc.label_tag }} {{ form.cc }}</p>
+            <p>{{ form.pc.label_tag }} {{ form.pc }}</p>
+            <p>{{ form.tllc.label_tag }} {{ form.tllc }}</p>
+            <p>{{ form.oidos.label_tag }} {{ form.oidos }}</p>
+            <p>{{ form.ojos.label_tag }} {{ form.ojos }}</p>
+            <p>{{ form.boca.label_tag }} {{ form.boca }}</p>
+            <p>{{ form.linfonodo_submandibular.label_tag }} {{ form.linfonodo_submandibular }}</p>
+            <p>{{ form.rt.label_tag }} {{ form.rt }}</p>
+            <p>{{ form.fc.label_tag }} {{ form.fc }}</p>
+            <p>{{ form.fr.label_tag }} {{ form.fr }}</p>
+            <p>{{ form.pulso_femoral.label_tag }} {{ form.pulso_femoral }}</p>
+            <p>{{ form.palpacion_abdominal.label_tag }} {{ form.palpacion_abdominal }}</p>
+            <p>{{ form.miembro_reproductor.label_tag }} {{ form.miembro_reproductor }}</p>
+            <p>{{ form.linfonodo_inguinal.label_tag }} {{ form.linfonodo_inguinal }}</p>
+            <p>{{ form.pelaje.label_tag }} {{ form.pelaje }}</p>
+            <p>{{ form.temperatura.label_tag }} {{ form.temperatura }}</p>
+            <p>{{ form.tratamiento.label_tag }} {{ form.tratamiento }}</p>
+            <p>{{ form.recomendaciones.label_tag }} {{ form.recomendaciones }}</p>
+            <p>{{ form.receta.label_tag }} {{ form.receta }}</p>
+
+            <button type="submit">Actualizar</button>
+        </form>
+        <a href="{% url 'ver_ficha' %}" class="volver-btn">Volver al listado</a>
+    </div>
+</body>
+</html>

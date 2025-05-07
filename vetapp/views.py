@@ -111,3 +111,46 @@ def ver_fichas_mascota(request, id_mascota):
         'cliente': cliente,
         'fichas': fichas
     })
+
+def editar_mascota(request, id_mascota):
+    mascota = get_object_or_404(Mascota, id_mascota=id_mascota)
+    
+    if request.method == 'POST':
+        form = MascotaForm(request.POST, instance=mascota)
+        if form.is_valid():
+            form.save()
+            return redirect('ver_mascotas')
+    else:
+        form = MascotaForm(instance=mascota)
+    
+    return render(request, 'vetapp/editar_mascota.html', {'form': form})
+
+def editar_cliente(request, id_cliente):
+    # Obtener el cliente a editar
+    cliente = get_object_or_404(Cliente, id_cliente=id_cliente)
+
+    # Verifica si el formulario fue enviado
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()  # Guarda los cambios
+            return redirect('ver_cliente')  # Redirige al listado de clientes después de la actualización
+    else:
+        # Si es un GET, pre-cargar los datos en el formulario
+        form = ClienteForm(instance=cliente)
+
+    # Renderiza la plantilla y pasa el formulario
+    return render(request, 'vetapp/editar_cliente.html', {'form': form, 'cliente': cliente})
+
+def editar_ficha(request, id_ficha):
+    ficha = get_object_or_404(Ficha, id_ficha=id_ficha)  # Obtenemos la ficha a editar
+    
+    if request.method == 'POST':
+        form = FichaForm(request.POST, instance=ficha)
+        if form.is_valid():
+            form.save()
+            return redirect('ver_fichas')  # Redirige al listado de fichas después de guardar
+    else:
+        form = FichaForm(instance=ficha)  # Cargamos los datos de la ficha en el formulario
+    
+    return render(request, 'vetapp/editar_ficha.html', {'form': form, 'ficha': ficha})

@@ -47,6 +47,7 @@
                         <th class="ver-cliente-th">ID de Ficha</th>
                         <th class="ver-cliente-th">Fecha de Visita</th>
                         <th class="ver-cliente-th">Motivo de Consulta</th>
+                        <th class="ver-cliente-th">CC</th>
                         <th class="ver-cliente-th">Acción</th>
                     </tr>
                 </thead>
@@ -56,8 +57,9 @@
                             <td class="ver-cliente-td">{{ ficha.id_ficha }}</td>
                             <td class="ver-cliente-td">{{ ficha.fecha_visita }}</td>
                             <td class="ver-cliente-td">{{ ficha.motivo_consulta }}</td>
+                            <td class="ver-cliente-td">{{ ficha.cc }}</td>
                             <td class="ver-cliente-td">
-                                <a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}" class="detalle-btn" style="text-decoration: none;">Ver Detalles</a>
+                                <a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}" class="detalle-btn" style="text-decoration: none;">Detalles</a>
                             </td>
                         </tr>
                     {% empty %}

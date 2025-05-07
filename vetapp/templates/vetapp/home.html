@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,7 +7,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="sidebar">
+
+    <!-- Botón hamburguesa con nuevo estilo -->
+    <button class="menu-toggle">☰</button>
+
+    <div class="sidebar" id="sidebar">
         <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
         <h2>Veterinaria</h2>
         <a href="{% url 'home' %}">Inicio</a>
@@ -43,6 +46,7 @@
                         <th>Cliente</th>
                         <th>Fecha Visita</th>
                         <th>Motivo Consulta</th>
+                        <th>CC</th> 
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -54,6 +58,7 @@
                             <td>{{ ficha.cliente.nombre }}</td>
                             <td>{{ ficha.fecha_visita }}</td>
                             <td>{{ ficha.motivo_consulta }}</td>
+                            <td>{{ ficha.cc }}</td>
                             <td>
                                 <a href="{% url 'ver_detalle_ficha' ficha.id_ficha %}">
                                     <button class="detalle-btn">Ver Detalle</button>
@@ -69,5 +74,8 @@
             </table>
         </div>
     </div>
+
+    <!-- Vincular archivo JavaScript al final del body -->
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
+
+    <!-- Botón hamburguesa -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Sidebar con ID para JS -->
+    <div class="sidebar" id="sidebar">
         <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
         <h2>Veterinaria</h2>
         <a href="{% url 'home' %}">Inicio</a>
@@ -27,7 +31,6 @@
     <div class="home-container">
         <h1 class="ver-cliente-h1">Lista de Fichas</h1>
 
-        <!-- Contenedor para la tabla -->
         <div class="tabla-container">
             <table class="ver-cliente-table">
                 <thead>
@@ -39,6 +42,8 @@
                         <th class="ver-cliente-th">Motivo Consulta</th>
                         <th class="ver-cliente-th">Tratamiento</th>
                         <th class="ver-cliente-th">Recomendaciones</th>
+                        <th class="ver-cliente-th">CC</th>
+                        <th class="ver-cliente-th">Acciones</th> <!-- Nueva columna para las acciones -->
                     </tr>
                 </thead>
                 <tbody>
@@ -51,16 +56,24 @@
                         <td class="ver-cliente-td">{{ ficha.motivo_consulta }}</td>
                         <td class="ver-cliente-td">{{ ficha.tratamiento }}</td>
                         <td class="ver-cliente-td">{{ ficha.recomendaciones }}</td>
+                        <td class="ver-cliente-td">{{ ficha.cc }}</td>
+                        <td class="ver-cliente-td">
+                            <!-- Agregar enlace para editar la ficha -->
+                            <a href="{% url 'editar_ficha' ficha.id_ficha %}" class="detalle-btn" style="text-decoration: none;">Editar</a>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr class="ver-cliente-tr">
-                        <td class="ver-cliente-td" colspan="7">No hay fichas registradas.</td>
+                        <td class="ver-cliente-td" colspan="9">No hay fichas registradas.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
+    <!-- Script del menú -->
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

@@ -29,19 +29,29 @@ class FichaForm(forms.ModelForm):
         model = Ficha
         fields = [
             'mascota', 'cliente', 'motivo_consulta', 
-            'anamnesis_remota', 'anamnesis_actual', 'pc', 'tllc', 'oidos', 
+            'anamnesis_remota', 'cc', 'anamnesis_actual', 'pc', 'tllc', 'oidos', 
             'ojos', 'boca', 'linfonodo_submandibular', 'rt', 'fc', 'fr', 
             'pulso_femoral', 'palpacion_abdominal', 'miembro_reproductor', 
             'linfonodo_inguinal', 'pelaje', 'temperatura', 'tratamiento', 
-            'recomendaciones', 'receta'
+            'recomendaciones', 'receta', 'fecha_visita'
         ]
         widgets = {
             'fecha_visita': forms.DateInput(attrs={'type': 'date'}),
         }
 
-    # Para completar automáticamente el dueño al seleccionar una mascota
     def __init__(self, *args, **kwargs):
         super(FichaForm, self).__init__(*args, **kwargs)
+        
+        # Si el objeto ya existe (es una edición), permite modificar la fecha
+        if self.instance.pk:
+            # El campo 'fecha_visita' estará disponible para edición solo si el objeto existe
+            self.fields['fecha_visita'].required = False  # La hace no obligatoria al editar
+        else:
+            # Al crear el objeto, fecha_visita no será editable
+            self.fields['fecha_visita'].widget.attrs['readonly'] = 'readonly'
+            self.fields['fecha_visita'].initial = 'fecha actual'  # Si lo deseas, puedes agregar la fecha actual como valor predeterminado al crear el objeto
+
+        # Para completar automáticamente el dueño al seleccionar una mascota
         if 'cliente' in self.fields:
             self.fields['cliente'].widget.attrs.update({'class': 'cliente-select', 'readonly': 'readonly'})
 
