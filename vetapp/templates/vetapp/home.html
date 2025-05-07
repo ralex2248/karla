@@ -18,7 +18,7 @@
         <a href="{% url 'ver_cliente' %}">Cliente</a>
         <a href="{% url 'ver_mascotas' %}">Mascotas</a>
         <a href="{% url 'ver_ficha' %}">Fichas</a>
-        <a href="#">Reportes</a>
+        <a href="{% url 'graficos' %}">Graficos</a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit" class="logout-btn">Cerrar sesión</button>
@@ -33,7 +33,7 @@
             <a href="{% url 'agregar_cliente' %}"><button>Agregar Cliente</button></a>
             <a href="{% url 'agregar_mascota' %}"><button>Agregar Mascota</button></a>
             <a href="{% url 'agregar_ficha' %}"><button>Agregar Ficha</button></a>
-            <button>Ver Gráficos</button>
+            <a href="{% url 'graficos' %}"><button>Ver Gráficos</button></a>
         </div>
 
         <div class="tabla-container">

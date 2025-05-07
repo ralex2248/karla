@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Botón hamburguesa con nuevo estilo -->
+    <button class="menu-toggle">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo Veterinaria">
+        <h2>Veterinaria</h2>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'ver_cliente' %}">Cliente</a>
+        <a href="{% url 'ver_mascotas' %}">Mascotas</a>
+        <a href="{% url 'ver_ficha' %}">Fichas</a>
+        <a href="{% url 'graficos' %}">Graficos</a> 
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Cerrar sesión</button>
+        </form>
+    </div>
+
+    <!-- Main Content -->
+    <div class="home-container">
+        <h1>Gráficos de Mascotas y Clientes</h1>
+
+        <h2>Mascotas por Especie</h2>
+        <img src="data:image/png;base64,{{ mascota_chart }}" alt="Gráfico de Mascotas por Especie" class="chart-img">
+
+
+        <h3>Datos:</h3>
+        <ul class="data-list">
+            <li>Caninos: {{ canino_count }}</li>
+            <li>Felinos: {{ felino_count }}</li>
+            <li>Otros: {{ otro_count }}</li>
+        </ul>
+    </div>
+
+    <!-- Vincular archivo JavaScript al final del body -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

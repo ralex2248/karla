@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import ClienteForm, MascotaForm, FichaForm
 from .models import Cliente, Mascota, Ficha
+from io import BytesIO
+import base64
+import matplotlib.pyplot as plt
+
 
 # Vista de inicio
 @login_required
@@ -154,3 +158,58 @@ def editar_ficha(request, id_ficha):
         form = FichaForm(instance=ficha)  # Cargamos los datos de la ficha en el formulario
     
     return render(request, 'vetapp/editar_ficha.html', {'form': form, 'ficha': ficha})
+
+
+def graficos(request):
+    # Contar las mascotas por especie
+    canino_count = Mascota.objects.filter(especie='Canino').count()
+    felino_count = Mascota.objects.filter(especie='Felino').count()
+    otro_count = Mascota.objects.filter(especie='Otro').count()
+
+    # Contar los clientes por región
+    region_a_count = Cliente.objects.filter(direccion__contains="Región A").count()
+    region_b_count = Cliente.objects.filter(direccion__contains="Región B").count()
+    region_c_count = Cliente.objects.filter(direccion__contains="Región C").count()
+
+    # Crear gráficos
+    # 1. Gráfico de barras: Mascotas por especie
+    fig, ax = plt.subplots()
+    ax.bar(['Canino', 'Felino', 'Otro'], [canino_count, felino_count, otro_count], color=['blue', 'green', 'red'])
+    ax.set_title('Mascotas por Especie')
+    ax.set_xlabel('Especie')
+    ax.set_ylabel('Cantidad')
+
+    # Guardar el gráfico en una imagen en memoria
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    mascota_chart = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
+    # 2. Gráfico de barras: Clientes por región
+    fig, ax = plt.subplots()
+    ax.bar(['Región A', 'Región B', 'Región C'], [region_a_count, region_b_count, region_c_count], color=['purple', 'orange', 'cyan'])
+    ax.set_title('Clientes por Región')
+    ax.set_xlabel('Región')
+    ax.set_ylabel('Cantidad')
+
+    # Guardar el gráfico en una imagen en memoria
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    region_chart = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
+    # Contexto para el template
+    context = {
+        'canino_count': canino_count,
+        'felino_count': felino_count,
+        'otro_count': otro_count,
+        'region_a_count': region_a_count,
+        'region_b_count': region_b_count,
+        'region_c_count': region_c_count,
+        'mascota_chart': mascota_chart,
+        'region_chart': region_chart,
+    }
+
+    return render(request, 'vetapp/graficos.html', context)
