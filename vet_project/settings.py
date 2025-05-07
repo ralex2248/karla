@@ -98,6 +98,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+import os 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Esto le indica a Django que busque archivos estáticos en la carpeta 'static' en la raíz del proyecto.
 ]
